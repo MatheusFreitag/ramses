@@ -1,0 +1,30 @@
+getRegistrador(int tipoReg)
+    - recebe um inteiro correspondente ao respectivo registrador e retorna o valor do mesmo: 0 - Registrador RA, 
+      1 - Registrador RB, 2 - Registrador RX
+setRegistrador(String dado, int tipoReg)
+    - recebe o dado a ser colocado no registador específico, seguindo o padrão acima;
+___________________________________________________________
+
+setPC(int endereco)
+    - seta o PC com o valor dado;
+getPC()
+    - retorna o PC;
+____________________________________________________________
+
+getRegistardorNZC()
+    - retorna a string do registador NZC (consideramos que ele é igual qualquer palavra da memória, uma String de 8 posições, só 
+      que daí só usamos 3 posições. Se não for assim, a gente altera depois);
+setRegistradorNZC(String atualiza)
+    - recebe como parâmetro a nova string com os valores atualizados dos registradores;
+____________________________________________________________
+
+setPalavra(String endereco, int registrador)
+    - coloca o dado do registrador no endereço fornecido;
+setPalavraIndireto(String endereco, int registrador)
+    - mesma coisa, mas indireto;
+getPalavra(int indice)
+    - o indice indexa a memória na posição onde está a palavra, que deve ser retornada.
+
+PS: ainda usamos a funçõe stringParaInt, vamos conferir se em alguma parte do código precisamos de uma intParaString.
+
+
