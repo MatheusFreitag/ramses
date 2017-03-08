@@ -1,0 +1,22 @@
+###### Matheus ######
+
+O programa reconhece uma entrada txt, converte em um vetor de palavras e este vetor deve ser passado
+ao processador que carregará esse vetor na memória, sendo cada posição do vetor uma posição de memória.
+Por enquanto o programa só imprime o vetor de palavras, não o armazenando em local algum porque não há memória para guarda-lo
+posteriormente.
+
+A interface é simples e possui poucos campos.
+São eles:
+txtMemoria
+txtPC
+txtC
+txtZ
+txtN
+txtMensagens
+
+Para imprimir qualquer coisa em qualquer campo basta usar o método .setText(string)
+
+#####################################################
+
+
+### Leticia e Monique ######
