@@ -5,6 +5,8 @@
  */
 package ramses;
 
+import java.util.ArrayList;
+
 /**
  *
  * @authors Felipe Tadeu Trinhain Palermo
@@ -13,28 +15,24 @@ package ramses;
 
 public class Ramses {
      //Declaração dos componentes da máquina: Memória e Rgistradores
-    private static Memoria mem = new Memoria();
-    private static PC pc = new PC();
-    private static Registrador a = new Registrador();
-    private static Registrador b = new Registrador();
-    private static Registrador x = new Registrador();
-    private static Registrador nzc = new Registrador();
+    private Memoria mem = new Memoria();
+    private PC pc = new PC();
+    private Registrador a = new Registrador();
+    private Registrador b = new Registrador();
+    private Registrador x = new Registrador();
+    private Registrador nzc = new Registrador();
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public Ramses() {
         
        
        //inicializa valores dos Registradores com valor 0 em 8 bits
        inicializaRegs();
-        
-        //inicializa interface gráfica
-        Macros interf = new Macros();
-        interf.run();
-        
     }
     
-    private static void inicializaRegs(){
+    
+    private void inicializaRegs(){
         a.setReg("00000000");
         b.setReg("00000000");
         x.setReg("00000000");
@@ -42,27 +40,27 @@ public class Ramses {
         nzc.setReg("00000000");
     }
     
-    public static int getPC(){
+    public int getPC(){
         return Converter.stringParaInt(pc.getReg());
     }
     
-    public static void setPC(int endereço){
+    public void setPC(int endereço){
         pc.setReg(Converter.paraStringBin8(endereço));
     }
     
-    public static void incrementaPC(){
+    public void incrementaPC(){
         pc.incrementa();
     }
     
-     public static String getRegistradorNZC(){
+     public String getRegistradorNZC(){
         return nzc.getReg();
     }
     
-    public static void setRegistradorNZC(String elem){
+    public void setRegistradorNZC(String elem){
         nzc.setReg(elem);
     }
     
-    public static int getRegistrador(int tipoReg){
+    public int getRegistrador(int tipoReg){
         if (tipoReg == 0)
             return Converter.stringParaInt(a.getReg());
         else if (tipoReg == 1)
@@ -77,7 +75,7 @@ public class Ramses {
         }
     }
     
-    public static void setRegistrador(int dado, int tipoReg){
+    public void setRegistrador(int dado, int tipoReg){
         if (tipoReg == 0)
             a.setReg(Converter.paraStringBin8(dado));
         else if (tipoReg == 1)
@@ -91,16 +89,20 @@ public class Ramses {
         }
     }
     
-    public static void setPalavra(String endereco, int registrador){
+    public void setPalavra(String endereco, int dado){
         
+        mem.setDado(endereco, dado);
+    }
+    
+    public void setPalavraDireto(String endereco, int registrador){
         mem.setDado(endereco, getRegistrador(registrador));
     }
     
-    public static void setPalavraIndireto(String endereco, int registrador){
+    public void setPalavraIndireto(String endereco, int registrador){
         mem.setDadoInd(endereco, getRegistrador(registrador));
     }
     
-    public static String getPalavra(int indice){
+    public String getPalavra(int indice){
         return mem.getDado(indice);
     }
 }

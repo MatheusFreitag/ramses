@@ -23,11 +23,23 @@ import javax.swing.JFileChooser;
  */
 public class Macros extends javax.swing.JFrame {
     public File selFile;
+    private ArrayList vetorInicial = new ArrayList();
     /**
      * Creates new form MacroInterface
      */
+    private static Ramses ramses = new Ramses();
     public Macros() {
         initComponents();
+    }
+    
+    public ArrayList retornaVetorInicial(){
+        if(vetorInicial.size() == 0)
+        {
+            vetorInicial.add("Teste");
+            return vetorInicial;
+                   }
+        else
+            return vetorInicial;
     }
 
     public static String geradorDeVetor(File file) throws IOException{
@@ -316,6 +328,15 @@ public class Macros extends javax.swing.JFrame {
         }
         return stringDePalavras;
     }
+    
+    private void inicializaMemoria(ArrayList list){
+        System.out.println(list.size());
+        for (int i=0;i<list.size();i++)
+        {
+            ramses.setPalavra(Converter.paraStringBin8(i), Converter.stringParaInt((String) list.get(i)));
+           System.out.println((String) list.get(i));
+        }
+    }
 
 
     /**
@@ -594,7 +615,9 @@ public class Macros extends javax.swing.JFrame {
 
             ArrayList<String> vetorPrograma = new ArrayList<>(Arrays.asList(line.split("\\s+")));
             //Aqui ele imprime a palavra
-            System.out.println(construtorDePalavras(vetorPrograma));
+            vetorInicial = construtorDePalavras(vetorPrograma);
+            System.out.println(vetorInicial);
+            inicializaMemoria(vetorInicial);
         } catch (IOException ex) {
             Logger.getLogger(Macros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -621,7 +644,7 @@ public class Macros extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public /*static*/ void run(/*String args[]*/) {
+    public static void main(String Args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
