@@ -4,12 +4,84 @@ package ramses;
  *
  * @author moni e leti
  */
-public class Op_ramses {
-//duvida 1: o que é o registrador de índices (X)?
-//duvida 2: pq no modo imediato os jumps são reconhecidos como NOPs? que    
+public class Op_ramses {  
     
     public Op_ramses(Memoria memoria){
         this.memoria = memoria;
+    }
+    
+    public int executaOperacao(String opcode[], int indice, int Final){
+        String palavra = opcode[indice];
+        String copiaPalavra = palavra.substring(0, 4);
+        int tipoEnd = this.identificaModo(indice);
+        int tipoReg = this.identificaReg(indice);
+        
+        switch(copiaPalavra){
+            case "0000":
+                indice = this.nop(indice);
+            break;
+            
+            case "0001":
+                indice = this.str(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "0010":
+                indice = this.ldr(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "0011":
+                indice = this.add(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "0100":
+                indice = this.or(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "0101":
+                indice = this.and(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "0110":
+                indice = this.not(indice, tipoReg);
+            break;
+            
+            case "0111":
+                indice = this.sub(indice + 1, tipoEnd, tipoReg);
+            break;
+            
+            case "1000":
+                indice = this.jmp(indice + 1, tipoEnd);
+            break;
+            
+            case "1001":
+                indice = this.jn(indice + 1, tipoEnd);
+            break;
+            
+            case "1010":
+                indice = this.jz(indice + 1, tipoEnd);
+            break;
+            
+            case "1011":
+               indice = this.jc(indice + 1, tipoEnd);
+            break;
+            
+            case "1100":
+                indice = this.jsr(indice + 1, tipoEnd);
+            break;
+            
+            case "1101":
+                indice = this.neg(indice, tipoReg);
+            break;
+            
+            case "1110":
+                indice = this.shr(indice, tipoReg);
+            break;
+            
+            case "1111":
+                indice = this.hlt(indice);
+            break;    
+        }
+        return indice;
     }
     
     private int nop(int indice){
