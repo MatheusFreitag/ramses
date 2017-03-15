@@ -1,6 +1,3 @@
-// codg rg me
-// xxxx xx xx
-
 STR 00 120 IND
 ADD 00 128 IME
 OR 00 125
@@ -9,12 +6,3 @@ NEG 01
 NOP
 SHR 01
 HLT
-
-// 00010001
-// 00110010
-// 010000XX
-// 010101XX
-// 110101XX
-// 0000XXXX
-// 111001XX
-// 1111XXXX
